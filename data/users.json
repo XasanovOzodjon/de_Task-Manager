@@ -1,0 +1,20 @@
+[
+    {
+        "user_id": 1,
+        "name": "Ozodjon",
+        "username": "Ego",
+        "pasword": "ed3abfd8249f39e400c27c8e8db1ad313f6951c38f99f02e1c162efc0197b90a"
+    },
+    {
+        "user_id": 1,
+        "name": "Ozod",
+        "username": "ego",
+        "pasword": "ed3abfd8249f39e400c27c8e8db1ad313f6951c38f99f02e1c162efc0197b90a"
+    },
+    {
+        "user_id": 1,
+        "name": "Ali",
+        "username": "ali123",
+        "pasword": "46e401b8afda5ea863d4d76a80f55ef86bbfd4de2258e8a2421aa128b00ff008"
+    }
+]
