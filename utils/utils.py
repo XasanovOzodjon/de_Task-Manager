@@ -7,10 +7,11 @@ def print_main() -> None:
     print('3. Quit')
     
 def print_menu():
-    print('1. View Tasks')
-    print('2. Add Task')
-    print('3. Remove Task')
-    print('4. Quit')
+    print('1. Create Task')
+    print('2. View Tasks')
+    print('3. Do Task')
+    print('4. View Not Doing Tasks')
+    print('5. Logout')
 
 def is_valid_password(password):
     return len(password) >= 8

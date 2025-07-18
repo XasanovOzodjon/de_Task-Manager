@@ -17,13 +17,15 @@ def main() -> None:
                     
                     choice = input("> ")
                     if choice == '1':
-                        pass
+                        manager.add_task()
                     elif choice == '2':
                         pass
                     elif choice == '3':
                         pass
                     elif choice == '4':
-                        return
+                        pass
+                    elif choice == '5':
+                        break
                     else:
                         print_satatus("Xato buyruq", status='error')
                 

@@ -1,7 +1,8 @@
 import json
 from getpass import getpass
 from utils import is_valid_password, is_valid_name, make_password, print_satatus
-from models import User
+from models import User, Task
+from datetime import datetime
 
 
 class Manager:
@@ -64,3 +65,27 @@ class Manager:
             if user.username == username:
                 return True
         return False
+
+    def add_task(self, task):
+        title = input("Task title: ")
+        description = input("Task description: ")
+        created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        deadline = input("Task deadline: ")
+
+        with open('data/tasks.json', 'r+') as jsonfile:
+            try:
+                data = json.load(jsonfile)
+            except json.JSONDecodeError:
+                data = []
+
+            task = {
+                "title": title,
+                "description": description,
+                "created_at": created_at,
+                "deadline": deadline,
+                "status": "not done",
+                "user_id": self.user.id
+            }
+            data.append(task)
+            jsonfile.seek(0)
+            json.dump(data, jsonfile, indent=4)
