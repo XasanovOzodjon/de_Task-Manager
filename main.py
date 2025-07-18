@@ -1,5 +1,5 @@
 import sys
-from utils import print_main
+from utils import print_main, print_satatus, print_menu
 from manager import Manager
 
 def main() -> None:
@@ -10,7 +10,24 @@ def main() -> None:
         op = input("> ")
 
         if op == '1':
-            manager.login()
+            if manager.login():
+                print_satatus("Login successful!")
+                while True:
+                    print_menu()
+                    
+                    choice = input("> ")
+                    if choice == '1':
+                        pass
+                    elif choice == '2':
+                        pass
+                    elif choice == '3':
+                        pass
+                    elif choice == '4':
+                        return
+                    else:
+                        print_satatus("Xato buyruq", status='error')
+                
+
         elif op == '2':
             manager.register()
         elif op == '3':

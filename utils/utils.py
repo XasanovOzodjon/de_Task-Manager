@@ -5,6 +5,12 @@ def print_main() -> None:
     print('1. Sign In')
     print('2. Sign Up')
     print('3. Quit')
+    
+def print_menu():
+    print('1. View Tasks')
+    print('2. Add Task')
+    print('3. Remove Task')
+    print('4. Quit')
 
 def is_valid_password(password):
     return len(password) >= 8
