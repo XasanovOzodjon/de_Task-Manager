@@ -1,20 +1,14 @@
 [
     {
-        "user_id": 1,
-        "name": "Ozodjon",
-        "username": "Ego",
-        "pasword": "ed3abfd8249f39e400c27c8e8db1ad313f6951c38f99f02e1c162efc0197b90a"
+        "user_id": "c2d825a2-638d-11f0-9ba6-1e178c571429",
+        "name": "Ali Valiyev",
+        "username": "ali",
+        "password": "932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef"
     },
     {
-        "user_id": 1,
-        "name": "Ozod",
-        "username": "ego",
-        "pasword": "ed3abfd8249f39e400c27c8e8db1ad313f6951c38f99f02e1c162efc0197b90a"
-    },
-    {
-        "user_id": 1,
-        "name": "Ali",
-        "username": "ali123",
-        "pasword": "46e401b8afda5ea863d4d76a80f55ef86bbfd4de2258e8a2421aa128b00ff008"
+        "user_id": "d5be9a2a-638d-11f0-9ba6-1e178c571429",
+        "name": "Vali Aliyev",
+        "username": "vali",
+        "password": "1718c24b10aeb8099e3fc44960ab6949ab76a267352459f203ea1036bec382c2"
     }
 ]

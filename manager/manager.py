@@ -1,9 +1,7 @@
-from getpass import getpass
-from models import User
-from utils import is_valid_password
 import json
-import os
-from hashlib import sha256
+from getpass import getpass
+from utils import is_valid_password, is_valid_name, make_password, print_satatus
+from models import User
 
 
 class Manager:
@@ -11,67 +9,58 @@ class Manager:
         self.user = None
         self.users = self.load_users()
 
-    @staticmethod
-    def check_username(users, username):
-        for user in users:
-            if user["username"] == username:
+    def register(self):
+        name = input("name: ").strip()
+        username = input("username: ")
+        password = getpass("password: ")
+        confirm_password = getpass("confirm password: ")
+        if  not is_valid_name(name):
+            print('ism xato\n')
+        elif self.check_username(username):
+            print(f"{username} tanlangan.\n")
+        elif password != confirm_password:
+            print("password bilan confirm password bir xil emas.\n")
+        elif not is_valid_password(password):
+            print("xato password.")
+        else:
+            self.users.append(User(name, username, make_password(password)))
+            self.save_users()
+            print("muvaffaqiyatli royxatdan otdingiz.")
+
+    def login(self):
+        username = input("username: ")
+        password = getpass("password: ")
+
+        hashed_password = make_password(password)
+
+        for user in self.users:
+            if user.username == username and user.password == hashed_password:
+                print_satatus("muvaffaqiyatli kirdingiz.")
+                self.user = user
                 return True
+        print_satatus("user topilmadi.", "error")
         return False
 
     @staticmethod
     def load_users():
-        try:
-            with open('data/users.json', 'r') as jsonfile:
-                return json.load(jsonfile)
-        except (FileNotFoundError, json.decoder.JSONDecodeError):
-            return []
+        with open('data/users.json') as jsonfile:
+            try:
+                data = json.load(jsonfile)
+                users = []
+                for item in data:
+                    user = User.from_dict(item)
+                    users.append(user)
+                return users
+            except:
+                return []
 
     def save_users(self):
         with open('data/users.json', 'w') as jsonfile:
-            json.dump(self.users, jsonfile, indent=4)
+            data = [user.to_dict() for user in self.users]
+            json.dump(data, jsonfile, indent=4)
 
-    def register(self):
-        name = input("name: ").strip()
-        if not name.replace("'", "").replace(" ", '').isalpha():
-            print('Ism noto‘g‘ri\n')
-            return
-
-        username = input("username: ").strip()
-        if self.check_username(self.users, username):
-            os.system("clear")
-            print(f"{username} allaqachon band.\n")
-            return
-
-        password = getpass("password: ").strip()
-        confirm_password = getpass("confirm password: ").strip()
-
-        if password != confirm_password:
-            os.system("clear")
-            print("Parollar mos emas.\n")
-            return
-
-        if not is_valid_password(password):
-            os.system("clear")
-            print("Parol talabga javob bermaydi.\n")
-            return
-
-        self.user = User(name, username, password)
-        self.users.append(self.user.__dict__)
-        self.save_users()
-        os.system("clear")
-        print(f"{username} muvaffaqiyatli ro‘yxatdan o‘tdi.")
-
-    def login(self):
-        username = input("username: ").strip()
-        password = getpass("password: ").strip()
-
+    def check_username(self, username):
         for user in self.users:
-            if user.get("username") == username and user.get("pasword") == sha256(password.encode()).hexdigest():
-                self.user = User(user["name"], user["username"], user["pasword"])
-                os.system("clear")
-                print(f"{username} tizimga muvaffaqiyatli kirdi.")
-                return
-
-        os.system("clear")
-        print("Username yoki parol xato.")
-
+            if user.username == username:
+                return True
+        return False
